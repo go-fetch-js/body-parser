@@ -16,13 +16,14 @@ function body(options) {
 	 */
 	return function(client) {
 
-		client.on('after', function (request, response, done) {
+		client.on('after', function (request, response, next) {
 			var body = '';
 
 			//if an allowed list of types is specified, then only concatenate responses where the mime type is in the allowed list of types
+
 			if (options && options.types) {
 				if (typeof(response.getContentType) === 'undefined' || options.types.indexOf(response.getContentType()) === -1) {
-					return done();
+					return next();
 				}
 			}
 
@@ -30,7 +31,7 @@ function body(options) {
 
 			//check response is a stream
 			if (!(stream instanceof Stream)) {
-				return done();
+				return next();
 			}
 
 			stream.on('data', function (data) {
@@ -39,7 +40,7 @@ function body(options) {
 
 			stream.on('end', function () {
 				response.setBody(body);
-				done();
+				next();
 			});
 
 		});

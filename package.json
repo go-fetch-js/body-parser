@@ -1,5 +1,5 @@
 {
-  "name": "go-fetch-read-body",
+  "name": "go-fetch-body-parser",
   "description": "Concatenate and parse the response stream.",
   "keywords": [
     "parse-body",
@@ -14,13 +14,13 @@
     "request",
     "fetch"
   ],
-  "version": "0.1.0",
+  "version": "1.0.0",
   "repository": {
     "type": "git",
-    "url": "git@github.com:go-fetch-js/read-body.git"
+    "url": "git@github.com:go-fetch-js/body-parser.git"
   },
   "bugs": {
-    "url": "https://github.com/go-fetch-js/read-body/issues"
+    "url": "https://github.com/go-fetch-js/body-parser/issues"
   },
   "devDependencies": {
     "go-fetch": "^1.2.0",
