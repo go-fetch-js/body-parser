@@ -1,0 +1,35 @@
+{
+  "name": "go-fetch-read-body",
+  "description": "Concatenate and parse the response stream.",
+  "keywords": [
+    "parse-body",
+    "parse-json",
+    "parse",
+    "body",
+    "json",
+    "read",
+    "http",
+    "https",
+    "client",
+    "request",
+    "fetch"
+  ],
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:go-fetch-js/read-body.git"
+  },
+  "bugs": {
+    "url": "https://github.com/go-fetch-js/read-body/issues"
+  },
+  "devDependencies": {
+    "go-fetch": "^1.2.0",
+    "string-to-stream": "^1.0.0"
+  },
+  "peerDependencies": {
+    "go-fetch": "^1.2.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  }
+}
