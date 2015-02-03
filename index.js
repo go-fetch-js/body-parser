@@ -16,8 +16,11 @@ function body(options) {
 	 */
 	return function(client) {
 
-		client.on('after', function (request, response, next) {
-			var body = '';
+		client.on('after', function (event, next) {
+			var
+				response = event.response,
+				body = ''
+			;
 
 			//if an allowed list of types is specified, then only concatenate responses where the mime type is in the allowed list of types
 
@@ -63,9 +66,12 @@ function json(options) {
 	return function(client) {
 		client.use(body(options));
 
-		client.on('after', function(request, response) {
+		client.on('after', function(event) {
 
-			var body = response.getBody();
+			var
+				response = event.response,
+				body = response.getBody()
+			;
 
 			if (typeof(body) === 'string') {
 				response.setBody(JSON.parse(body));

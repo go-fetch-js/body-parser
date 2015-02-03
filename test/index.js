@@ -1,6 +1,6 @@
 var assert      = require('assert');
 var HttpClient  = require('go-fetch');
-var body        = require('..');
+var bodyParser  = require('..');
 var str         = require('string-to-stream');
 
 describe('.body()', function() {
@@ -10,14 +10,19 @@ describe('.body()', function() {
 		var client    = new HttpClient();
 		var request   = new HttpClient.Request();
 		var response  = new HttpClient.Response();
+		var event     = new HttpClient.Event({
+			name:     'after',
+			request:  request,
+			response: response
+		});
 
-		client.use(body());
+		client.use(bodyParser());
 
 		response.setBody(str('Hello World!'));
 
-		client.emit('after', request, response, function(error, request, response) {
-			assert.equal(typeof(response.getBody()), 'string');
-			assert.equal(response.getBody(), 'Hello World!');
+		client.emit(event, function(error, event) {
+			assert.equal(typeof(event.response.getBody()), 'string');
+			assert.equal(event.response.getBody(), 'Hello World!');
 		});
 
 	});
@@ -31,20 +36,24 @@ describe('.json()', function() {
 		var client    = new HttpClient();
 		var request   = new HttpClient.Request();
 		var response  = new HttpClient.Response();
-		var stream    = str('{"msg": "Hello World!" }');
+		var event     = new HttpClient.Event({
+			name:     'after',
+			request:  request,
+			response: response
+		});
 
-		client.use(body.json());
+		client.use(bodyParser.json());
 
 		response
-			.setBody(stream)
+			.setBody(str('{"msg": "Hello World!" }'))
 			.getContentType = function() {
 				return 'application/json';
 			}
 		;
 
-		client.emit('after', request, response, function(error, request, response) {
-			assert.equal(typeof(response.getBody()), 'object');
-			assert.deepEqual(response.getBody(), {msg: 'Hello World!'});
+		client.emit(event, function(error, event) {
+			assert.equal(typeof(event.response.getBody()), 'object');
+			assert.deepEqual(event.response.getBody(), {msg: 'Hello World!'});
 		});
 
 	});
@@ -54,9 +63,14 @@ describe('.json()', function() {
 		var client    = new HttpClient();
 		var request   = new HttpClient.Request();
 		var response  = new HttpClient.Response();
+		var event     = new HttpClient.Event({
+			name:     'after',
+			request:  request,
+			response: response
+		});
 		var stream    = str('{"msg": "Hello World!" }');
 
-		client.use(body.json());
+		client.use(bodyParser.json());
 
 		response
 			.setBody(stream)
@@ -65,8 +79,8 @@ describe('.json()', function() {
 			}
 		;
 
-		client.emit('after', request, response, function(error, request, response) {
-			assert(response.getBody() instanceof str);
+		client.emit(event, function(event, event) {
+			assert(event.response.getBody() instanceof str);
 		});
 
 	});
