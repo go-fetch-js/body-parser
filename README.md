@@ -1,22 +1,22 @@
-# go-fetch-body-parser
+# go-fetch-parse-body
 
-[![Circle CI](https://circleci.com/gh/go-fetch-js/body-parser.svg?style=svg)](https://circleci.com/gh/go-fetch-js/body-parser)
+[![Circle CI](https://circleci.com/gh/go-fetch-js/parse-body.svg?style=svg)](https://circleci.com/gh/go-fetch-js/parse-body)
 
 Concatenate and parse the response stream.
 
 ## Installation 
 
-    npm install --save go-fetch-body-parser
+    npm install --save go-fetch-parse-body
     
 ## Usage
     
     var HttpClient = require('go-fetch');
-    var body = require('go-fetch-body-parser');
+    var parseBody = require('go-fetch-parse-body');
     
     HttpClient()
         .use(HttpClient.plugins.contentType)
-        .use(body.json())
-        .get('https://api.github.com/repos/go-fetch-js/body-parser', {'User-Agent': 'go-fetch'}, function(error, response) {
+        .use(parseBody.json())
+        .get('https://api.github.com/repos/go-fetch-js/parse-body', {'User-Agent': 'go-fetch'}, function(error, response) {
             console.log(error, response.getBody());
         })
     ;

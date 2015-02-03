@@ -3,7 +3,7 @@ var HttpClient  = require('go-fetch');
 var bodyParser  = require('..');
 var str         = require('string-to-stream');
 
-describe('.body()', function() {
+describe('parse-body', function() {
 
 	it('body should be a string', function() {
 
