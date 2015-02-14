@@ -29,13 +29,19 @@ Concatenate and parse the response stream.
 
 Concatenate the response stream as a string.
 
-- `options.types` - An optional white-list array of mime-types
+Optional options:
+
+- `options.once` - Only parses the body of the next response if set to true
+- `options.maxlength` - Only parses responses with a `Content-Length` shorter than the specified value  
+- `options.types` - Only parses the responses with a `Content-Type` of the specified value
 
 #### body.json(options)
 
 Concatenate and parse the response stream as a JSON object.
 
-- `options.types` - An optional white-list array of mime-types
+#### body.urlencoded(options)
+
+Concatenate and parse the response stream as a form URL encoded object.
 
 ## License
 
