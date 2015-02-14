@@ -18,7 +18,7 @@
     "parse-json",
     "parse-urlencoded"
   ],
-  "version": "2.1.0",
+  "version": "2.1.1",
   "repository": {
     "type": "git",
     "url": "git@github.com:go-fetch-js/parse-body.git"
@@ -32,7 +32,7 @@
     "string-to-stream": "^1.0.0"
   },
   "peerDependencies": {
-    "go-fetch": "^2.0.0"
+    "go-fetch": "^2.0.3"
   },
   "scripts": {
     "test": "mocha"
