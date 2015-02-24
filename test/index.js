@@ -152,8 +152,8 @@ describe('parse-body', function() {
 
 		response
 			.setBody(str('Hello World!'))
-			.getContentType = function() {
-				return 'text/plain';
+			.isContentType = function() {
+				return true;
 			}
 		;
 
@@ -175,14 +175,12 @@ describe('parse-body', function() {
 			response: response
 		});
 
-		client
-			.use(bodyParser({types: ['text/plain']}))
-		;
+		client.use(bodyParser({types: ['text/plain']}));
 
 		response
 			.setBody(str('<h1>Hello World!</h1>'))
-			.getContentType = function() {
-				return 'text/html';
+			.isContentType = function() {
+				return false
 			}
 		;
 
@@ -213,8 +211,8 @@ describe('.urlencoded()', function() {
 
 		response
 			.setBody(str('msg=Hello%20World!'))
-			.getContentType = function() {
-				return 'application/x-www-form-urlencoded';
+			.isContentType = function() {
+				return true;
 			}
 		;
 
@@ -242,8 +240,8 @@ describe('.urlencoded()', function() {
 
 		response
 			.setBody(str('msg=Hello%20World!'))
-			.getContentType = function() {
-				return 'text/html';
+			.isContentType = function() {
+				return false;
 			}
 		;
 
@@ -273,8 +271,8 @@ describe('.json()', function() {
 
 		response
 			.setBody(str('{"msg": "Hello World!" }'))
-			.getContentType = function() {
-				return 'application/json';
+			.isContentType = function() {
+				return true;
 			}
 		;
 
@@ -302,8 +300,8 @@ describe('.json()', function() {
 
 		response
 			.setBody(stream)
-			.getContentType = function() {
-				return 'text/html';
+			.isContentType = function() {
+				return false;
 			}
 		;
 
