@@ -10,11 +10,12 @@ Concatenate and parse the response stream.
     
 ## Usage
     
-    var HttpClient = require('go-fetch');
-    var parseBody = require('go-fetch-parse-body');
+    var HttpClient  = require('go-fetch');
+    var contentType = require('go-fetch-content-type');
+    var parseBody   = require('go-fetch-parse-body');
     
     HttpClient()
-        .use(HttpClient.plugins.contentType)
+        .use(contentType)
         .use(parseBody.json())
         .get('https://api.github.com/repos/go-fetch-js/parse-body', {'User-Agent': 'go-fetch'}, function(error, response) {
             console.log(error, response.getBody());
